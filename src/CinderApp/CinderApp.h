@@ -5,12 +5,18 @@
 #include <cinder/gl/gl.h>
 
 #include <memory>
+#include <vector>
 
 //
-// Forward devlarations
+// Forward declarations
 //
 class btDiscreteDynamicsWorld;
 class btRigidBody;
+class btSerializer;
+class btCollisionConfiguration;
+class btCollisionDispatcher;
+class btBroadphaseInterface;
+class btConstraintSolver;
 
 class CinderApp : public ci::app::App
 {
@@ -23,10 +29,25 @@ public:
 	virtual void draw() override;
 
 public:
-    ci::CameraPersp  m_perspectiveCam;
-    ci::gl::BatchRef m_ball;
+    void SerializeState();
+    void LoadState();
 
-    std::unique_ptr<btRigidBody> m_spRigidBody;
-    std::unique_ptr<btDiscreteDynamicsWorld> m_spDynamicsWorld;
+    btDiscreteDynamicsWorld* CreateDynamicsWorld();
+
+    ci::CameraPersp  m_perspectiveCam;
+
+    // Indices correspond
+    std::vector<ci::gl::BatchRef>             m_balls;
+    std::vector<std::unique_ptr<btRigidBody>> m_spRigidBodies;
+
+    std::unique_ptr<btSerializer>             m_spSerializer;
+
+    std::unique_ptr<btCollisionConfiguration> m_spCollisionConfig;
+    std::unique_ptr<btCollisionDispatcher>    m_spDispatcher;
+    std::unique_ptr<btBroadphaseInterface>    m_spBroadphase;
+    std::unique_ptr<btConstraintSolver>       m_spSolver;
+
+    std::unique_ptr<btDiscreteDynamicsWorld>  m_spDynamicsWorld;
+
     double m_lastFrameTime;
 };

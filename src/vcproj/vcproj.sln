@@ -25,6 +25,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletInverseDynamics", "..
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearMath", "..\..\ext\bullet3\vc14\src\LinearMath\LinearMath.vcxproj", "{D713EBF9-4855-3C53-9454-4F9E90190520}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletWorldImporter", "..\..\ext\bullet3\vc14\Extras\Serialize\BulletWorldImporter\BulletWorldImporter.vcxproj", "{DC0FFC67-2819-3F2B-BE53-71AC02394F37}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletFileLoader", "..\..\ext\bullet3\vc14\Extras\Serialize\BulletFileLoader\BulletFileLoader.vcxproj", "{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_ANGLE|x64 = Debug_ANGLE|x64
@@ -269,6 +273,46 @@ Global
 		{D713EBF9-4855-3C53-9454-4F9E90190520}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{D713EBF9-4855-3C53-9454-4F9E90190520}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
 		{D713EBF9-4855-3C53-9454-4F9E90190520}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug_ANGLE|x64.ActiveCfg = Debug|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug_ANGLE|x64.Build.0 = Debug|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug_ANGLE|x86.ActiveCfg = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug_ANGLE|x86.Build.0 = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug|x64.ActiveCfg = Debug|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug|x64.Build.0 = Debug|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Debug|x86.ActiveCfg = Debug|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.MinSizeRel|x86.ActiveCfg = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release_ANGLE|x64.ActiveCfg = Release|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release_ANGLE|x64.Build.0 = Release|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release_ANGLE|x86.ActiveCfg = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release_ANGLE|x86.Build.0 = MinSizeRel|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release|x64.ActiveCfg = Release|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release|x64.Build.0 = Release|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.Release|x86.ActiveCfg = Release|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+		{DC0FFC67-2819-3F2B-BE53-71AC02394F37}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug_ANGLE|x64.ActiveCfg = Debug|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug_ANGLE|x64.Build.0 = Debug|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug_ANGLE|x86.ActiveCfg = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug_ANGLE|x86.Build.0 = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug|x64.ActiveCfg = Debug|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug|x64.Build.0 = Debug|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Debug|x86.ActiveCfg = Debug|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.MinSizeRel|x64.Build.0 = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.MinSizeRel|x86.ActiveCfg = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release_ANGLE|x64.ActiveCfg = Release|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release_ANGLE|x64.Build.0 = Release|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release_ANGLE|x86.ActiveCfg = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release_ANGLE|x86.Build.0 = MinSizeRel|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release|x64.ActiveCfg = Release|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release|x64.Build.0 = Release|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.Release|x86.ActiveCfg = Release|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.RelWithDebInfo|x64.Build.0 = RelWithDebInfo|x64
+		{F8DB7AC2-73DE-3190-B96D-6C3BB3407F17}.RelWithDebInfo|x86.ActiveCfg = RelWithDebInfo|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
