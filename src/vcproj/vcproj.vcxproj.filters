@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="CinderApp">
+      <UniqueIdentifier>{7f0b63bd-68fe-46d0-b00e-3a3a2e599f24}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CinderApp\CinderApp.h">
+      <Filter>CinderApp</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CinderApp\CinderApp.cpp">
+      <Filter>CinderApp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
