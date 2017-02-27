@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 This is a quick project intended to play with determinism in BulletPhysics world serialization.
 
 The project is in a state where this goal is met for the simulation in question. However, the requisite modifications to bullet won't be part of the project as I am a stupid what cloned bullet as a submodule!
@@ -22,6 +21,3 @@ in btWorldImporter.cpp at line 2051, add:
             );
 
 ...and that's it!
-=======
-"# bullet.serialize" 
->>>>>>> c8149c72104405809aa3e259ed4ad9a1ba602b8e
