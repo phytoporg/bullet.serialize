@@ -22,7 +22,8 @@ namespace
 }
 
 CinderApp::CinderApp()
-    : m_lastFrameTime(0.0)
+    : m_lastFrameTime(0.0),
+      m_frameIndex(0)
 {}
 
 void CinderApp::setup()
@@ -53,18 +54,17 @@ void CinderApp::setup()
         m_balls.push_back(ballRef);
         auto pRigidBody = new btRigidBody(
                 2.0, 
-                new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 0, 0))), 
+                nullptr, 
                 new btSphereShape(BallRadius)
                 );
         pRigidBody->setWorldTransform(originalTransform);
-        pRigidBody->getMotionState()->setWorldTransform(originalTransform);
 
         // Should be drifting towards the center
         vec3 d(-X, -Y, 0);
         vec3 n = normalize(d) * BallSpeed;
         pRigidBody->setLinearVelocity(btVector3(n.x, n.y, n.z));
 
-        m_spRigidBodies.emplace_back(pRigidBody);
+        m_pRigidBodies.emplace_back(pRigidBody);
         m_spDynamicsWorld->addRigidBody(pRigidBody);
     }
 
@@ -74,19 +74,41 @@ void CinderApp::setup()
 
 void CinderApp::update()
 {
-    static float dtBuffer[100] = {};
-    static int i = 0;
+    if (m_frameIndex == 0)
+    {
+        // Some piece of the initial state is never serialized, so
+        // take the initial state and "clean" it up artificially to 
+        // ensure that all following iterations are deterministic.
+        SerializeState();
+        LoadState();
+    }
+    else if (m_frameIndex == 1)
+    {
+        SerializeState();
+    }
+    m_frameIndex++;
+
     if (m_lastFrameTime > std::numeric_limits<float>::epsilon())
     {
-        float dt = getElapsedSeconds() - m_lastFrameTime;
-        dtBuffer[i++ % 100] = dt;
-        m_spDynamicsWorld->stepSimulation(1.0 / 60.0);
+        static const float InvFrameRate = 1.0f / getFrameRate();
+        m_spDynamicsWorld->stepSimulation(InvFrameRate);
     }
 
-    assert(m_spDynamicsWorld->getNumCollisionObjects() == m_spRigidBodies.size());
+    assert(m_spDynamicsWorld->getNumCollisionObjects() == m_pRigidBodies.size());
     assert(m_spDynamicsWorld->getNumCollisionObjects() == m_balls.size());
 
     m_lastFrameTime = getElapsedSeconds();
+
+    if (m_frameIndex == 300)
+    {
+        LoadState();
+        if (!m_validator.CheckWorld(m_spDynamicsWorld.get()))
+        {
+            throw std::exception("Validation FAILED: Nondeterminism detected in simulation.");
+        }
+
+        m_frameIndex = 1;
+    }
 }
 
 void CinderApp::draw()
@@ -102,10 +124,9 @@ void CinderApp::draw()
         gl::pushModelMatrix();
         gl::color(Color(CM_RGB, 1.0, 0.0, 0.0));
 
-        auto& spRigidBody = m_spRigidBodies[i];
+        auto& pRigidBody = m_pRigidBodies[i];
 
-        btTransform transform;
-        spRigidBody->getMotionState()->getWorldTransform(transform);
+        btTransform transform = pRigidBody->getWorldTransform();
         const auto& Origin = transform.getOrigin();
         const auto& Rotation = transform.getRotation();
 
@@ -144,6 +165,7 @@ void CinderApp::SerializeState()
 void CinderApp::LoadState()
 {
     assert(m_spSerializer);
+    m_spDynamicsWorld.reset();
     m_spDynamicsWorld.reset(CreateDynamicsWorld());
     std::unique_ptr<btBulletWorldImporter> spWorldLoader(
         new btBulletWorldImporter(m_spDynamicsWorld.get())
@@ -155,9 +177,17 @@ void CinderApp::LoadState()
         m_spSerializer->getCurrentBufferSize()
         );
     m_spSerializer.reset();
+
+    auto& collisionObjects = m_spDynamicsWorld->getCollisionObjectArray();
+    assert(collisionObjects.size() == m_pRigidBodies.size());
+    for (int i = 0; i < m_spDynamicsWorld->getNumCollisionObjects(); i++)
+    {
+        m_pRigidBodies[i] = static_cast<btRigidBody*>(collisionObjects[i]);
+    }
 }
 
 CINDER_APP(CinderApp, app::RendererGl, [](cinder::app::AppBase::Settings* pSettings)
 {
     pSettings->setWindowSize(640, 480);
+    pSettings->setFrameRate(60.0f);
 });

@@ -9,9 +9,15 @@
     <ClInclude Include="..\CinderApp\CinderApp.h">
       <Filter>CinderApp</Filter>
     </ClInclude>
+    <ClInclude Include="..\CinderApp\DeterminismValidator.h">
+      <Filter>CinderApp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CinderApp\CinderApp.cpp">
+      <Filter>CinderApp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CinderApp\DeterminismValidator.cpp">
       <Filter>CinderApp</Filter>
     </ClCompile>
   </ItemGroup>

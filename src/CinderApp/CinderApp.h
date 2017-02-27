@@ -4,6 +4,8 @@
 #include <cinder/camera.h>
 #include <cinder/gl/gl.h>
 
+#include "DeterminismValidator.h"
+
 #include <memory>
 #include <vector>
 
@@ -37,10 +39,10 @@ public:
     ci::CameraPersp  m_perspectiveCam;
 
     // Indices correspond
-    std::vector<ci::gl::BatchRef>             m_balls;
-    std::vector<std::unique_ptr<btRigidBody>> m_spRigidBodies;
+    std::vector<ci::gl::BatchRef>   m_balls;
+    std::vector<btRigidBody*>       m_pRigidBodies;
 
-    std::unique_ptr<btSerializer>             m_spSerializer;
+    std::unique_ptr<btSerializer>   m_spSerializer;
 
     std::unique_ptr<btCollisionConfiguration> m_spCollisionConfig;
     std::unique_ptr<btCollisionDispatcher>    m_spDispatcher;
@@ -49,5 +51,8 @@ public:
 
     std::unique_ptr<btDiscreteDynamicsWorld>  m_spDynamicsWorld;
 
+    DeterminismValidator                      m_validator;
+
     double m_lastFrameTime;
+    unsigned int m_frameIndex;
 };

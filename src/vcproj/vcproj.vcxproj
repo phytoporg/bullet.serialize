@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CinderApp\CinderApp.h" />
+    <ClInclude Include="..\CinderApp\DeterminismValidator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CinderApp\CinderApp.cpp" />
+    <ClCompile Include="..\CinderApp\DeterminismValidator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4AD10970-3AC4-4864-BE3B-BEAAA980A0A1}</ProjectGuid>
@@ -91,6 +93,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)..\..\ext\bullet3\Extras\Serialize;$(ProjectDir)..\..\ext\bullet3\src;$(ProjectDir)..\..\ext\Cinder\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <FloatingPointModel>Strict</FloatingPointModel>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
